@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<h2>Liste des interventions : </h2>
+{% for intervention in interventions %}
+{% if intervention.statusId == 1 %}
+{% set status = 'Prise en charge' %}
+
+{% elseif intervention.statusId == 2 %}
+{% set status = 'Déplacement à vide' %}
+
+{% elseif intervention.statusId == 3 %}
+{% set status = 'En attente' %}
+
+{% elseif intervention.statusId == 4 %}
+{% set status = 'Revisite' %}
+
+{% elseif intervention.statusId == 5 %}
+{% set status = 'Archivé' %}
+
+
+{% endif %}
+<p>Etat : {{ status }} Nom : {{ intervention.interventionname }} <a href="{{ path('intervention_detail', { 'id_intervention' : intervention.interventionid }) }}" ><button>Détails</button></a>
+    <a href="{{ path('edit_intervention', { 'id_intervention' : intervention.interventionid }) }}" ><button>Modifier</button></a>
+    <a href="{{ path('delete_intervention', { 'id_intervention' : intervention.interventionid }) }}" ><button>Supprimer</button></a></p>
+{% endfor %}
+{% endblock %}

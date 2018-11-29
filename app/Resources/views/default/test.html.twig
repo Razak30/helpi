@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+{% block body %}
+
+<h2>HOTEL : </h2>
+<p><a href="{{ path('hotel_detail', { 'id_hotel' : 1 }) }}" > Vue hotel_detail </a></p>
+
+<p><a href="{{ path('hotels') }}" > Vue hotels </a></p>
+
+<p><a href="{{ path('hotel_new') }}" > Vue add </a></p>
+
+<p><a href="{{ path('edit_hotel', { 'id_hotel' : 25 }) }}" > Vue edit_hotel </a></p>
+
+<h2>INTERVENTION : </h2>
+
+<p><a href="{{ path('intervention_detail', { 'id_intervention' : 1 }) }}" > Vue intervention_detail </a></p>
+
+<p><a href="{{ path('new_intervention') }}" > Vue intervention_new </a></p>
+
+<p><a href="{{ path('edit_intervention', { 'id_intervention' : 32 }) }}" > Vue edit_intervention </a></p>
+
+<h3>Admin : </h3>
+<p><a href="{{ path('interventionsAdmin') }}" > Vue interventionsAdmin </a></p>
+
+<h3>Manager : </h3>
+<p><a href="{{ path('interventionsManager') }}" > Vue interventionsManager </a></p>
+
+<h3>User : </h3>
+<p><a href="{{ path('interventionsUser') }}" > Vue interventionsUser </a></p>
+
+
+
+
+<h2>ROOM : </h2>
+
+<p><a href="{{ path('rooms') }}" > Vue rooms </a></p>
+
+<p><a href="{{ path('room_detail', { 'id_room' : 88 }) }}" > Vue room_detail </a></p>
+
+<p><a href="{{ path('new_room') }}" > Vue new_room </a></p>
+
+<p><a href="{{ path('edit_room', { 'id_room' : 88 }) }}" > Vue edit_room </a></p>
+
+<h2>ROOMTYPE : </h2>
+
+<p><a href="{{ path('roomtypes') }}" > Vue roomtypes </a></p>
+
+<p><a href="{{ path('new_roomtype') }}" > Vue new_roomtype </a></p>
+
+<h2>INTERVENTIONTYPE : </h2>
+
+<p><a href="{{ path('interventiontypes') }}" > Vue interventiontypes </a></p>
+
+<p><a href="{{ path('new_interventiontype') }}" > Vue new_interventiontype </a></p>
+
+
+{% endblock %}
+

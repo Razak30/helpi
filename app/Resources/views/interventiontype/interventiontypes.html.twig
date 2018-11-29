@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<h2>Liste des types de pièces : </h2>
+{% for interventiontype in interventiontypes %}
+<p>  {{ interventiontype.interventiontypename }} 
+    <a href="{{ path('edit_interventiontype', { 'id_interventiontype' : interventiontype.interventiontypeid }) }}" ><button>Modifier</button></a>
+    <a href="{{ path('delete_interventiontype', { 'id_interventiontype' : interventiontype.interventiontypeid }) }}" ><button>Supprimer</button></a>
+
+</p>
+{% endfor %}
+{% endblock %}

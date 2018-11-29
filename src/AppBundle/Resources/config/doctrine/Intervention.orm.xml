@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Intervention" table="intervention"
+  repository-class="AppBundle\Repository\InterventionRepository">
+    <indexes>
+      <index name="FK_USER_INTERVENTION" columns="userId"/>
+      <index name="FK_INTERVENTION_TYPE_INTERVENTION" columns="interventionTypeId"/>
+      <index name="FK_ROOM_INTERVENTION" columns="roomId"/>
+      <index name="FK_STATUS_INTERVENTION" columns="statusId"/>
+    </indexes>
+    <id name="interventionid" type="integer" column="interventionId">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="userid" type="integer" column="userId" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="interventiontypeid" type="integer" column="interventionTypeId" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="roomid" type="integer" column="roomId" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="statusid" type="integer" column="statusId" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="interventionname" type="string" column="interventionName" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="interventioncomplement" type="text" column="interventionComplement" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="interventiondatecreate" type="date" column="interventionDateCreate" nullable="true"/>
+    <field name="interventiondateclose" type="date" column="interventionDateClose" nullable="true"/>
+    <field name="interventionphotoIncident" type="string" column="interventionPhoto_Incident" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

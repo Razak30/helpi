@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+    {% block body %}
+    {% for statu in status %}
+    {% if statu.statusId == 4 %}
+    <p><a href="{{ path('intervention_close', { 'id_intervention' : intervention.interventionId}) }}">NOM : Clôturer </a></p>
+    {% elseif statu.statusId == 5 %}
+    {% else %}
+    <p><a href="{{ path('intervention_save_status', { 'id_intervention' : intervention.interventionId, 'id_status' : statu.statusId}) }}">NOM : {{ statu.statusName }}</a></p>
+    {% endif %}
+    {% endfor %}
+
+    {% endblock %}

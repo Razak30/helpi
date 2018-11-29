@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Room" table="room">
+    <indexes>
+      <index name="FK_HOTEL_ROOM" columns="hotelId"/>
+      <index name="FK_ROOM_TYPE_ROOM" columns="roomTypeId"/>
+    </indexes>
+    <id name="roomid" type="integer" column="roomId">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="roomtypeid" type="integer" column="roomTypeId" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="hotelid" type="integer" column="hotelId" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="roomnumber" type="decimal" column="roomNumber" precision="5" scale="0" nullable="true"/>
+    <field name="roomfloor" type="integer" column="roomFloor" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

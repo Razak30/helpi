@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<h2>Fiche Hotel : </h2>
+
+<p>Nom : {{ hotel.name }}</p>
+<p>Adresse : {{ hotel.address }}</p>
+<p>Code Postal : {{ hotel.postalcode }}</p>
+<p>Ville : {{ hotel.city }}</p>
+<p>Télephone : {{ hotel.phonenumber }}</p>
+
+{% endblock %}

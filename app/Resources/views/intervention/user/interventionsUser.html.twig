@@ -1,0 +1,7 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<h2>Liste des interventions : </h2>
+{% for intervention in interventions %}
+<p> Etat : {{ intervention.statusId }} Nom : {{ intervention.interventionname }} <a href="{{ path('intervention_detail', { 'id_intervention' : intervention.interventionid }) }}" ><button>Détails</button></a></p>
+{% endfor %}
+{% endblock %}

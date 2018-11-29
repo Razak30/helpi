@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<h2>Fiche Intervention : </h2>
+
+<p>Nom de l'intervention : {{ intervention.interventionname }}</p>
+
+<p>ID Utilisateur : {{ intervention.userid }}</p>
+
+<p>ID type d'intervention : {{ intervention.interventiontypeid }}</p>
+
+<p>ID pièce : {{ intervention.roomid }}</p>
+
+<p>ID Etat : {{ intervention.statusid }}</p>
+
+<p>Commentaire : {{ intervention.interventioncomplement }}</p>
+
+<p>Photo : {{ intervention.interventionphotoIncident }}</p>
+
+
+
+
+
+{% endblock %}

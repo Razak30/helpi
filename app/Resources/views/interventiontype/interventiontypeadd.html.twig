@@ -1,0 +1,70 @@
+{% extends "base.html.twig" %}
+    {% block body %}
+
+    <h2>Ajout d'un type d'intervention :</h2>
+        <form method="post" id="interventiontypeAddForm">
+
+            <p><label for="interventiontypename">Nom : </label><input type="text" name="interventiontypename" id="interventiontypename" value="{{ interventiontype.interventiontypename }}"></p>
+            <p><label for="interventiontypeparentid">Parent : </label><input type="text" name="interventiontypeparentid" id="interventiontypeparentid" value="{{ interventiontype.interventiontypeparentid }}"></p>
+
+            <input name="interventiontypeid" type="hidden" value="{{ interventiontype.interventiontypeid }}">
+
+            <input type="submit" value="Enregistrer" />
+         
+        </form>
+
+    {% endblock %}
+
+    
+    {% block javascripts %}
+    <script src="../../js/jquery-2.2.4.min.js"></script>
+	<script>
+	$(function() {
+
+		console.log("{{ path('interventiontype_save') }}");
+		
+		
+		$('#interventiontypeAddForm').on('submit', function(e) { //use on if jQuery 1.7+
+			e.preventDefault();  //prevent form from submitting
+			var values = $(this).serialize();
+
+
+            function verif(elem)
+			{
+				if(elem.value.length < 1)
+				{	
+					elem.style.backgroundColor = "#fba";
+					return false
+				}
+				else
+				{
+					elem.style.backgroundColor = "";
+					return true
+				}
+			}
+			
+			if(verif($('#interventiontypeAddForm')[0].interventiontypename)&& verif($('#interventiontypeAddForm')[0].interventiontypeparentid))
+			{		
+			$.ajax({
+				url: "{{ path('interventiontype_save') }}",
+				type: "post",
+				data: values ,
+				success: function (response) {
+				   // you will get response from your php page (what you echo or print)                 
+					console.log('success : '+response);
+					$('#interventiontypeAddForm')[0].reset();
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				   console.log(textStatus, errorThrown);
+				}
+			}
+
+
+			);
+            }
+		});
+		
+	});
+		
+	</script>
+    {% endblock %}

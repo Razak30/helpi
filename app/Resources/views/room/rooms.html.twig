@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<h2>Liste des salles : </h2>
+{% for room in rooms %}
+<p> Numero : {{ room.roomnumber }}  <a href="{{ path('room_detail', { 'id_room' : room.roomid }) }}" ><button>Détails</button></a>
+    <a href="{{ path('edit_room', { 'id_room' : room.roomid }) }}" ><button>Modifier</button></a>
+    <a href="{{ path('delete_room', { 'id_room' : room.roomid }) }}" ><button>Supprimer</button></a>
+
+</p>
+{% endfor %}
+{% endblock %}

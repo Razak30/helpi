@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block body %}
+{% for hotel in hotels %}
+<p> {{ hotel.name }}  <a href="{{ path('hotel_detail', { 'id_hotel' : hotel.id }) }}" ><button>Détails</button></a>
+    <a href="{{ path('edit_hotel', { 'id_hotel' : hotel.id }) }}" ><button>Modifier</button></a>
+    <a href="{{ path('delete_hotel', { 'id_hotel' : hotel.id }) }}" ><button>Delete</button></a></p>
+{% endfor %}
+{% endblock %}
+

@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+{% block body %}
+
+
+<h2>{{intervention.interventionname}}</h2>
+
+<p>{{room.roomfloor}}e étage - {{ roomtype.roomtypename }} n° {{ room.roomnumber }}</p>
+<form method="post" id="formCloture" action="{{path('intervention_save_status', { 'id_intervention' : intervention.interventionId, 'id_status' : 4 })}}">
+
+<p><label for="complement">Commentaire : </label><input type="text" name="complement" id="complement" placeholder="Temps passé" value="{{ intervention.interventioncomplement }}"></p>
+
+<input name="interventionid" type="hidden" value="{{ intervention.interventionid }}">
+
+<input name="typeCloture" id="typeCloture" type="hidden">
+
+<input type="submit" value="Archiver" name="valid" onclick="btnArchiver();">
+
+<input type="submit" value="Revisite" name="valid" onclick="btnRevisite();">
+
+</form>
+{% endblock %}
+
+{% block javascripts %}
+<script src="../js/jquery-2.2.4.min.js"></script>
+<script>
+function btnArchiver()
+{
+    var element = document.getElementById("typeCloture");
+    element.value = 5;
+}
+
+
+function btnRevisite()
+{
+    var element = document.getElementById("typeCloture");
+    element.value = 4;
+}
+</script>
+
+{% endblock %}

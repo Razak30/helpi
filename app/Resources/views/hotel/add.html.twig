@@ -1,0 +1,69 @@
+{% extends "base.html.twig" %}
+    {% block body %}
+
+    <h2>Ajout d'un hotel :</h2>
+        <!-- <form method="post" action="{{ path('hotel_save') }}"> -->
+        <form method="post" id="hotel_add" >
+            <p><label for="name">Nom de l'hotel : </label><input type="text" name="name" id="name" value="{{ hotel.name }}"></p>
+            <p><label for="address">Adresse : </label><input type="text" name="address" id="address" value="{{ hotel.address }}"></p>
+            <p><label for="postalcode">Code postal : </label><input type="text" name="postalcode" id="postalcode" value="{{ hotel.postalcode }}"></p>
+            <p><label for="city">Ville : </label><input type="text" name="city" id="city" value="{{ hotel.city }}"></p>
+            <p><label for="phonenumber">Téléphone : </label><input type="text" name="phonenumber" id="phonenumber" value="{{ hotel.phonenumber }}"></p>
+            <input name="id" type="hidden" value="{{ hotel.id }}">
+            <input type="submit" value="Enregistrer" />
+         
+        </form>
+
+    {% endblock %}
+
+
+    {% block javascripts %}
+	<script>
+	$(function() {
+
+		console.log("{{ path('hotel_save') }}");
+		
+		
+		$('#hotel_add').on('submit', function(e) { //use on if jQuery 1.7+
+			e.preventDefault();  //prevent form from submitting
+			var values = $(this).serialize();
+
+			function verif(elem)
+			{
+				if(elem.value.length < 1)
+				{	
+					elem.style.backgroundColor = "#fba";
+					return false
+				}
+				else
+				{
+					elem.style.backgroundColor = "";
+					return true
+				}
+			}
+			
+			console.log($('#hotel_add')[0].name)
+			
+			if(verif($('#hotel_add')[0].name) && verif($('#hotel_add')[0].address) && verif($('#hotel_add')[0].postalcode) && verif($('#hotel_add')[0].city) && verif($('#hotel_add')[0].phonenumber))
+			{
+			$.ajax({
+				url: "{{ path('hotel_save') }}",
+				type: "post",
+				data: values ,
+				success: function (response) {
+				   // you will get response from your php page (what you echo or print)                 
+					console.log('success : '+response);
+					$('#hotel_add')[0].reset();
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				   console.log(textStatus, errorThrown);
+				}
+			}
+			);
+			}
+		});
+		
+	});
+		
+	</script>
+    {% endblock %}

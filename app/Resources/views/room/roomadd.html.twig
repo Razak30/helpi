@@ -1,0 +1,93 @@
+{% extends "base.html.twig" %}
+    {% block body %}
+
+    <h2>Ajout d'une pièce :</h2>
+        <form method="post" id="roomAddForm">
+            <label for="hotel_id">Hotel : </label>
+            <select name="hotel_id" id="hotel_id">
+                {% for hotel in hotels %}
+                {% if room.hotelId == hotel.id %}
+                <option value="{{ hotel.id }}" selected>{{ hotel.name }}</option>
+                {% else %}
+                <option value="{{ hotel.id }}">{{ hotel.name }}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+
+            <label for="roomType">Type de pièce : </label>
+            <select name="roomType" id="roomType">
+                {% for roomType in roomTypes %}
+                {% if room.roomtypeid == roomType.roomtypeid %}
+                <option value="{{ roomType.roomtypeid }}" selected>{{ roomType.roomtypename }}</option>
+                {% else %}
+                <option value="{{ roomType.roomtypeid }}">{{ roomType.roomtypename }}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+
+
+            <p><label for="roomnumber">Numero de la chambre : </label><input type="text" name="roomnumber" id="roomnumber" value="{{ room.roomnumber }}"></p>
+
+            <p><label for="roomfloor">Numero de l'étage : </label><input type="number" name="roomfloor" id="roomfloor" value="{{ room.roomfloor }}"></p>
+
+			<input name="roomid" type="hidden" value="{{ room.roomid }}">
+
+            <input type="submit" value="Enregistrer" />
+         
+        </form>
+
+    {% endblock %}
+
+    
+	{% block javascripts %}
+	<script src="../../js/jquery-2.2.4.min.js"></script>
+	<script>
+	$(function() {
+
+		console.log("{{ path('room_save') }}");
+		
+		
+		$('#roomAddForm').on('submit', function(e) { //use on if jQuery 1.7+
+			e.preventDefault();  //prevent form from submitting
+			var values = $(this).serialize();
+
+
+            function verif(elem)
+			{
+				if(elem.value.length < 1)
+				{	
+					elem.style.backgroundColor = "#fba";
+					return false
+				}
+				else
+				{
+					elem.style.backgroundColor = "";
+					return true
+				}
+			}
+			
+			if(verif($('#roomAddForm')[0].hotel_id) && verif($('#roomAddForm')[0].roomType) && verif($('#roomAddForm')[0].roomnumber) && verif($('#roomAddForm')[0].roomfloor))
+			{		
+			$.ajax({
+				url: "{{ path('room_save') }}",
+				type: "post",
+				data: values ,
+				success: function (response) {
+				   // you will get response from your php page (what you echo or print)                 
+					console.log('success : '+response);
+					$('#roomAddForm')[0].reset();
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				   console.log(textStatus, errorThrown);
+				}
+			}
+
+
+			);
+            }
+		});
+		
+	});
+		
+	</script>
+    {% endblock %}
